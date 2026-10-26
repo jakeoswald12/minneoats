@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MINNEØATS: small-batch maple almond granola, from bowl to soul.">
+<title>MINNEØATS Coral Rose</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Palette: coral-rose primary on blush + oat, maple accent. Layout: Tillamook-style color-blocked retail homepage — big caps, rounded color cards, pill buttons, carousels. Committed single (light) look on purpose. */
+:root{
+  --berry:#D24E5A; --berry-deep:#B13A47; --blush:#FADDD6; --blush-2:#FDEDE8; --oat:#FFFAF6; --ink:#231A1C; --maple:#E8A33A; --butter:#FBE7B8; --muted:#6E5E61; --white:#FFFFFF;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,system-ui,sans-serif;
+  --gut:clamp(16px,4vw,48px); --max:1320px; --r:28px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--oat);color:var(--ink);font:17px/1.6 var(--f-body);margin:0;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--maple);outline-offset:3px}
+.in{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.eyebrow{font:700 13px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase}
+.pill{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--f-body);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;padding:17px 28px;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,background .2s,color .2s}
+.pill:hover{transform:translateY(-2px)}
+.pill.solid{background:var(--berry-deep);color:var(--white)}
+.pill.solid:hover{background:#962D3A}
+.pill.line{border-color:currentColor;background:transparent}
+.pill.white{background:var(--white);color:var(--berry)}
+.pill small{font-weight:600;opacity:.8;text-transform:none;letter-spacing:0}
+
+/* wordmark */
+.wm{display:inline-flex;align-items:baseline;white-space:nowrap;line-height:1;font:800 1em/1 var(--f-display);letter-spacing:-.01em;text-decoration:none}
+.wm svg{height:.74em;width:auto;margin:0 .01em;transform:translateY(.02em);overflow:visible}
+
+/* announcement + header */
+.ann{background:var(--ink);color:var(--blush);font:600 13px/1 var(--f-body);letter-spacing:.06em;text-align:center;padding:11px var(--gut)}
+.ann b{color:var(--white)}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--berry);color:var(--white);transition:transform .35s ease}
+header.site.hide{transform:translateY(-110%)}
+.hbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:72px;gap:16px}
+.hbar nav{display:flex;gap:28px;font:600 15px/1 var(--f-body)}
+.hbar nav a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+.hbar nav a:hover{border-color:var(--blush)}
+.hbar .right{justify-content:flex-end}
+.hbar .logo{font-size:30px;color:var(--white)}
+.hbar nav a.bag,.bag{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--berry);border-radius:999px;padding:9px 16px;font:700 14px/1 var(--f-body);text-decoration:none}
+.menu-btn{display:none;background:none;border:0;color:var(--white);font:700 14px/1 var(--f-body);letter-spacing:.1em;cursor:pointer}
+
+/* hero */
+.hero{background:var(--blush);overflow:hidden;position:relative}
+.hero .in{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:24px;padding-block:clamp(28px,6vh,84px) clamp(36px,7vh,96px)}
+.hero h1{font-size:clamp(44px,min(8.4vw,13.5vh),140px);color:var(--berry);letter-spacing:-.03em}
+.hero h1 span{display:block;white-space:nowrap}
+.hero p.sub{font-size:clamp(17px,1.5vw,20px);max-width:36ch;margin:clamp(14px,2.4vh,22px) 0 clamp(18px,3.2vh,30px);color:var(--ink)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .ctas .pill{padding:clamp(13px,2vh,17px) clamp(18px,1.9vw,28px);font-size:clamp(13px,1.15vw,15px)}
+.hero-art{position:relative;aspect-ratio:1/1;max-width:min(640px,74vh);width:100%;justify-self:center}
+.hero-art .sun{position:absolute;inset:6%;border-radius:50%;background:var(--white)}
+.hero-art .ring{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(210,78,90,.4);animation:spin 60s linear infinite}
+.hero-art .spill{position:absolute;width:112%;left:-2%;top:20%;transform:rotate(-8deg);filter:drop-shadow(0 30px 40px rgba(140,45,60,.22))}
+.hero-art .pouch{position:absolute;width:44%;right:2%;top:-2%;transform:rotate(9deg);filter:drop-shadow(0 30px 30px rgba(140,45,60,.25));animation:float 6s ease-in-out infinite}
+.sticker{position:absolute;left:4%;bottom:6%;width:132px;height:132px;border-radius:50%;background:var(--maple);color:var(--ink);display:grid;place-items:center;text-align:center;font:800 15px/1.05 var(--f-display);text-transform:uppercase;transform:rotate(-12deg);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.sticker em{font-style:normal;display:block;font-size:30px}
+@keyframes float{50%{transform:rotate(6deg) translateY(-14px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* statement with scroll-filled words */
+.statement{padding-block:clamp(72px,10vw,140px)}
+.statement p{font:700 clamp(30px,4.4vw,62px)/1.08 var(--f-display);letter-spacing:-.015em;margin:0 auto;max-width:20ch;text-align:center;text-wrap:balance}
+.statement .w{color:var(--berry);transition:color .4s}
+.js .statement .w{color:#EBB7B8}
+.js .statement .w.on{color:var(--berry)}
+
+/* product carousel */
+.carousel{padding-bottom:clamp(64px,8vw,110px)}
+.c-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-inline:var(--gut);scroll-padding-inline:var(--gut)}
+.c-track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 min(1220px,calc(100vw - 2*var(--gut) - 40px));scroll-snap-align:start;border-radius:var(--r);display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:520px;overflow:hidden;position:relative}
+.slide .art{position:relative;height:100%;min-height:360px;display:grid;place-items:center;padding:36px}
+.slide .art img.prod{max-height:400px;width:auto;filter:drop-shadow(0 24px 30px rgba(110,50,35,.2));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.slide:hover .art img.prod{transform:rotate(-3deg) scale(1.03)}
+.slide .copy{padding:40px clamp(24px,4vw,64px);display:grid;gap:18px;justify-items:start;min-width:0}
+.slide h2{font-size:clamp(40px,5vw,72px)}
+.slide .meta{font:600 15px/1.5 var(--f-body);max-width:40ch;margin:0}
+.slide .price{font:800 26px/1 var(--f-display)}
+.slide .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.c-ctrl{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px;font:700 14px/1 var(--f-body);font-variant-numeric:tabular-nums}
+.c-ctrl button{width:44px;height:44px;border-radius:50%;border:0;background:var(--berry);color:var(--white);font-size:18px;cursor:pointer}
+.sz{display:inline-flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.sz button{background:transparent;border:0;font:700 13px/1 var(--f-body);padding:12px 16px;cursor:pointer;color:var(--ink)}
+.sz button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+
+/* subscription */
+.subs{background:var(--berry);color:var(--white);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1fr 1.05fr}
+.subs .pic{position:relative;min-height:420px}
+.subs .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.subs .body{padding:clamp(28px,5vw,64px);display:grid;gap:22px;align-content:center;min-width:0}
+.subs h2{font-size:clamp(44px,5.6vw,82px);color:var(--blush)}
+.subs p{margin:0;max-width:46ch}
+.opt{display:grid;gap:10px}
+.opt .lab{font:700 12px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:700 14px/1 var(--f-body);padding:12px 18px;border-radius:999px;border:2px solid rgba(255,255,255,.6);background:transparent;color:var(--white);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--white);color:var(--berry);border-color:var(--white)}
+.total{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;border-top:1px solid rgba(255,255,255,.35);padding-top:20px}
+.total .big{font:800 46px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.total s{opacity:.7}
+.total .save{background:var(--maple);color:var(--ink);font:800 13px/1 var(--f-body);padding:7px 11px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.perks{display:flex;flex-wrap:wrap;gap:8px 20px;font:600 14px/1.3 var(--f-body);padding:0;margin:0;list-style:none}
+.perks li::before{content:"✓ ";color:var(--blush)}
+.note{font-size:12px!important;opacity:.75}
+
+/* recipes */
+.ways{padding-block:clamp(72px,9vw,120px)}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px 40px;margin-bottom:34px}
+.sec-head h2{font-size:clamp(44px,6vw,92px);color:var(--berry)}
+.sec-head p{margin:0;max-width:40ch;color:var(--muted)}
+.r-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-inline:var(--gut);scroll-padding-inline:var(--gut);padding-bottom:10px;scrollbar-width:thin}
+.recipe{flex:0 0 300px;scroll-snap-align:start;text-decoration:none;display:grid;gap:14px}
+.recipe .ph{border-radius:22px;overflow:hidden;aspect-ratio:4/5;position:relative;background:var(--blush)}
+.recipe .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.recipe:hover .ph img{transform:scale(1.06)}
+.recipe .tags{display:flex;gap:8px;font:700 12px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--berry)}
+.recipe h3{font-size:26px;line-height:1}
+
+/* full-bleed */
+.bleed{position:relative;height:clamp(420px,62vw,720px);overflow:hidden}
+.bleed img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;will-change:transform}
+.bleed .cap{position:absolute;left:var(--gut);bottom:var(--gut);background:var(--white);border-radius:22px;padding:22px 26px;max-width:380px;display:grid;gap:8px}
+.bleed .cap h3{font-size:30px;color:var(--berry)}
+.bleed .cap p{margin:0;font-size:15px}
+
+/* marquee */
+.marq{background:var(--maple);color:var(--ink);overflow:hidden;padding-block:20px;border-block:2px solid var(--ink)}
+.marq .t{display:flex;gap:42px;width:max-content;animation:mq 40s linear infinite;font:800 26px/1 var(--f-display);text-transform:uppercase;white-space:nowrap}
+.marq .t span::after{content:"✺";margin-left:42px;color:var(--berry)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* story */
+.story{padding-block:clamp(72px,9vw,130px)}
+.story .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .ph{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:5/4}
+.story .ph img{width:100%;height:100%;object-fit:cover}
+.story .ph2{position:absolute;right:-6%;bottom:-10%;width:42%;border-radius:20px;overflow:hidden;border:8px solid var(--oat);aspect-ratio:1}
+.story .ph2 img{width:100%;height:100%;object-fit:cover}
+.story h2{font-size:clamp(42px,5.4vw,80px);color:var(--berry)}
+.story .copy{display:grid;gap:20px;justify-items:start}
+.story .copy p{margin:0;max-width:48ch}
+.story .sig{font:700 15px/1.4 var(--f-body);color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin:6px 0}
+.stats div{display:grid}
+.stats b{font:800 44px/1 var(--f-display);color:var(--berry)}
+.stats span{font:600 13px/1.3 var(--f-body);color:var(--muted)}
+
+/* goods */
+.goods{padding-bottom:clamp(72px,9vw,120px)}
+.g-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.good{background:var(--white);border-radius:22px;padding:18px;display:grid;gap:10px;text-decoration:none;align-content:start}
+.good .ph{aspect-ratio:1;border-radius:14px;background:var(--blush-2);display:grid;place-items:center;overflow:hidden}
+.good .ph img{max-height:82%;width:auto;transition:transform .5s}
+.good:hover .ph img{transform:scale(1.06) rotate(-2deg)}
+.good b{font:800 19px/1.1 var(--f-display);text-transform:uppercase}
+.good span{font:600 15px/1 var(--f-body);color:var(--muted)}
+
+/* where to buy */
+.where{background:var(--butter);padding-block:clamp(64px,8vw,110px)}
+.where .grid{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start}
+.where h2{font-size:clamp(42px,5.6vw,84px);color:var(--berry)}
+.where ul{list-style:none;margin:0;padding:0;columns:2;column-gap:30px}
+.where li{break-inside:avoid;padding:10px 0;border-bottom:1.5px solid rgba(35,26,28,.15);font:600 15px/1.3 var(--f-body)}
+.where li span{display:block;font-weight:500;font-size:13px;color:var(--muted)}
+
+/* newsletter */
+.news{background:var(--blush);padding-block:clamp(64px,8vw,110px);text-align:center}
+.news h2{font-size:clamp(44px,6vw,96px);color:var(--berry)}
+.news p{max-width:52ch;margin:18px auto 28px}
+.news form{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:560px;margin:0 auto}
+.news input{flex:1 1 260px;min-width:0;font:600 16px/1 var(--f-body);padding:17px 24px;border-radius:999px;border:2px solid var(--berry);background:var(--white);color:var(--ink)}
+.news .msg{min-height:24px;margin-top:12px;font-weight:700;color:var(--berry)}
+
+/* catering */
+.cater{padding-block:clamp(64px,8vw,110px)}
+.cater .card{background:var(--ink);color:var(--oat);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr}
+.cater .pics{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:6px;min-height:460px}
+.cater .pics div{position:relative;overflow:hidden}
+.cater .pics div:first-child{grid-row:1/3}
+.cater .pics img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cater .body{padding:clamp(28px,5vw,64px);display:grid;gap:20px;align-content:center;justify-items:start;min-width:0}
+.cater h2{font-size:clamp(38px,4.6vw,66px);color:var(--blush)}
+.cater p{margin:0;max-width:44ch;color:#E6D9D6}
+.cater ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.cater li{border:1.5px solid rgba(250,221,214,.4);border-radius:999px;padding:8px 14px;font:600 13px/1 var(--f-body)}
+
+/* footer */
+footer{background:var(--berry);color:var(--white);padding-block:64px 36px}
+footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px}
+footer .logo{font-size:44px}
+footer h4{font:700 12px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;color:var(--blush)}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-weight:600}
+footer a{text-decoration:none}
+footer .verse{font:500 14px/1.5 var(--f-body);color:var(--blush);border-left:2px solid var(--blush);padding-left:14px;margin:0}
+footer .verse cite{display:block;font-style:normal;font-weight:700;margin-top:6px}
+footer .base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,.3);font-size:13px;opacity:.85}
+
+/* placeholder flags */
+.ph-flag{position:absolute;top:12px;left:12px;z-index:3;background:var(--ink);color:var(--butter);font:700 11px/1.25 var(--f-body);letter-spacing:.04em;padding:7px 10px;border-radius:10px;max-width:220px;pointer-events:none}
+body.clean .ph-flag{display:none}
+.review{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;background:var(--ink);color:var(--white);border:0;border-radius:999px;padding:12px 18px;font:700 13px/1 var(--f-body);cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.toast{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;background:var(--white);color:var(--ink);border-radius:16px;padding:14px 18px;max-width:320px;font:600 14px/1.4 var(--f-body);box-shadow:0 12px 30px rgba(0,0,0,.18);transform:translateY(calc(100% + 40px));visibility:hidden;transition:transform .35s,visibility .35s}
+.toast.show{transform:none;visibility:visible}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .rv.on{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .hbar nav.left a:not(:first-child),.hbar nav.right a:not(.bag){display:none}
+  .hero .in,.slide,.subs,.story .grid,.where .grid,.cater .card{grid-template-columns:1fr}
+  .hero-art{max-width:520px}
+  .slide .art{min-height:300px}
+  .slide .art img.prod{max-height:300px}
+  .g-grid{grid-template-columns:1fr 1fr}
+  footer .top{grid-template-columns:1fr 1fr}
+  .story .ph2{right:4%}
+}
+@media (max-width:560px){
+  .hbar{grid-template-columns:auto 1fr auto;height:62px}
+  .hbar .logo{font-size:24px;justify-self:center}
+  .where ul{columns:1}
+  .sticker{width:104px;height:104px;font-size:12px}.sticker em{font-size:24px}
+  .cater .pics{min-height:340px}
+  footer .top{grid-template-columns:1fr}
+  .recipe{flex-basis:250px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="ann"><b>Small-batch granola, handcrafted since 2017.</b> &nbsp;Local pickup or shipping.</div>
+<header class="site" id="hdr">
+  <div class="in hbar">
+    <nav class="left" aria-label="Shop"><a href="#shop">Shop Granola</a><a href="#subscribe">Subscribe</a><a href="#ways">Ways to Bowl</a></nav>
+    <a class="wm logo" href="#top" aria-label="MINNEØATS home">MINNEØATS</a>
+    <nav class="right" aria-label="Brand"><a href="#story">Our Story</a><a href="#where">Find Us</a><a href="#catering">Catering</a><a class="bag" href="https://minneoats.myshopify.com/cart" target="_blank" rel="noopener">Bag</a></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="in">
+      <div>
+        <span class="eyebrow" style="color:var(--berry)">Maple Almond Granola</span>
+        <h1><span>From bowl</span><span>to soul.</span></h1>
+        <p class="sub">Organic oats and almonds, a little maple, a pinch of sea salt. Baked in small batches for the mornings you want to remember.</p>
+        <div class="ctas">
+          <a class="pill solid" href="https://minneoats.myshopify.com/cart/37209935184037:1" target="_blank" rel="noopener">Shop Maple Almond <small>$12</small></a>
+          <a class="pill line" href="#subscribe" style="color:var(--berry)">Subscribe &amp; save</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div><div class="ring"></div>
+        <img class="spill" data-par="-0.06" src="assets/cut-spill.webp" alt="">
+        <img class="pouch" src="assets/cut-10oz.webp" alt="">
+        <div class="sticker"><span><em>10 oz</em>organic<br>oats</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement in">
+    <p id="stmt">We don't just bake granola. We bake the reason to sit down, slow down and share the good part of the morning.</p>
+  </section>
+
+  <section class="carousel" id="shop" aria-roledescription="carousel" aria-label="Shop the lineup">
+    <div class="c-track" id="ctrack">
+      <article class="slide" style="background:var(--blush)" aria-label="1 of 4">
+        <div class="art"><img class="prod" src="assets/cut-10oz.webp" alt="MINNEØATS Maple Almond Granola, 10 oz pouch"></div>
+        <div class="copy">
+          <span class="eyebrow" style="color:var(--berry)">The original · 10 oz</span>
+          <h2 style="color:var(--berry)">Sweet. Salty. Irresistible.</h2>
+          <p class="meta">Organic rolled oats and almonds, sweetened with organic coconut sugar and Grade A maple syrup, finished with cinnamon and Himalayan sea salt.</p>
+          <div class="row"><span class="price">$12</span><a class="pill solid" href="https://minneoats.myshopify.com/cart/37209935184037:1" target="_blank" rel="noopener">Add to bag</a></div>
+        </div>
+      </article>
+      <article class="slide" style="background:var(--butter)" aria-label="2 of 4">
+        <div class="art"><img class="prod" src="assets/cut-4oz.webp" alt="MINNEØATS Maple Almond Granola, 4 oz pouch" style="max-height:330px"></div>
+        <div class="copy">
+          <span class="eyebrow" style="color:var(--berry)">Snack size · 4 oz</span>
+          <h2 style="color:var(--berry)">Small bag. Big mood.</h2>
+          <p class="meta">The same Maple Almond in a purse-sized pouch. Made for school pickup, the car, the trail and the friend who needs a little treat.</p>
+          <div class="row"><span class="price">$5</span><a class="pill solid" href="https://minneoats.myshopify.com/cart/41082699710629:1" target="_blank" rel="noopener">Add to bag</a></div>
+        </div>
+      </article>
+      <article class="slide" style="background:var(--blush-2)" aria-label="3 of 4">
+        <div class="art"><img class="prod" src="assets/cut-bulk.webp" alt="MINNEØATS Maple Almond Granola, bulk bag"></div>
+        <div class="copy">
+          <span class="eyebrow" style="color:var(--berry)">Bulk · 3 or 5 lb</span>
+          <h2 style="color:var(--berry)">For the every-single-morning crowd.</h2>
+          <p class="meta">If granola disappears in your house, this is your bag. Pick a size:</p>
+          <div class="sz" role="group" aria-label="Bulk size">
+            <button type="button" aria-pressed="true" data-v="40979324469413" data-p="45">3 lb</button>
+            <button type="button" aria-pressed="false" data-v="40979348357285" data-p="70">5 lb</button>
+          </div>
+          <div class="row"><span class="price" id="bulkPrice">$45</span><a class="pill solid" id="bulkBtn" href="https://minneoats.myshopify.com/cart/40979324469413:1" target="_blank" rel="noopener">Add to bag</a></div>
+        </div>
+      </article>
+      <article class="slide" style="background:var(--blush)" aria-label="4 of 4">
+        <div class="art"><img class="prod" src="assets/cut-candle.webp" alt="MINNEØATS Maple Almond soy candle" style="max-height:340px"></div>
+        <div class="copy">
+          <span class="eyebrow" style="color:var(--berry)">The candle · 10 oz jar</span>
+          <h2 style="color:var(--berry)">Smells like our kitchen.</h2>
+          <p class="meta">A 100% soy candle that smells like a fresh batch in the oven: cinnamon, maple, butter and vanilla. 50-hour burn.</p>
+          <div class="row"><span class="price">$25</span><a class="pill solid" href="https://minneoats.myshopify.com/cart/41082658750629:1" target="_blank" rel="noopener">Add to bag</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="c-ctrl"><button type="button" id="prev" aria-label="Previous slide">←</button><span id="count">1 / 4</span><button type="button" id="next" aria-label="Next slide">→</button></div>
+  </section>
+
+  <section class="in" id="subscribe">
+    <div class="subs rv">
+      <div class="pic"><img src="assets/ph-milk.webp" alt="Granola in a bowl with a small pitcher of milk" loading="lazy"><span class="ph-flag">Placeholder · shoot: MINNEØATS granola + milk pour, overhead</span></div>
+      <div class="body">
+        <span class="eyebrow" style="color:var(--blush)">Subscribe &amp; save</span>
+        <h2>Never run out of the good stuff.</h2>
+        <p>Fresh bags on your schedule. Skip, swap or cancel anytime.</p>
+        <div class="opt"><span class="lab" id="lab-bags">Bags per delivery (10 oz)</span><div class="chips" role="group" aria-labelledby="lab-bags" data-k="bags"><button type="button" aria-pressed="false" data-v="1">1 bag</button><button type="button" aria-pressed="true" data-v="2">2 bags</button><button type="button" aria-pressed="false" data-v="3">3 bags</button><button type="button" aria-pressed="false" data-v="4">4 bags</button></div></div>
+        <div class="opt"><span class="lab" id="lab-freq">Delivered every</span><div class="chips" role="group" aria-labelledby="lab-freq" data-k="freq"><button type="button" aria-pressed="false" data-v="2">2 weeks</button><button type="button" aria-pressed="true" data-v="4">4 weeks</button><button type="button" aria-pressed="false" data-v="8">8 weeks</button></div></div>
+        <div class="total"><span class="big" id="subTotal">$21.60</span><s id="subWas">$24.00</s><span class="save">Save 10%</span><span id="subFreq" style="flex-basis:100%;font-weight:600">per delivery, every 4 weeks</span></div>
+        <ul class="perks"><li>Free local pickup</li><li>First access to seasonal flavors</li><li>Skip anytime</li></ul>
+        <div><button class="pill white" type="button" id="subBtn">Start my subscription</button></div>
+        <p class="note">Subscription program shown as a proposal. Pricing and perks are examples to confirm with the team.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ways" id="ways">
+    <div class="in sec-head rv"><h2>Ways to bowl</h2><p>One bag, a dozen good mornings. Six of our favorite ways to eat it, from the two-minute parfait to the oatmeal bowls that started it all.</p></div>
+    <div class="r-track">
+      <a class="recipe" href="#ways"><div class="ph"><img src="assets/ph-yogurt-bright.webp" alt="Yogurt bowl with blueberries and granola" loading="lazy"><span class="ph-flag">Placeholder · shoot: parfait with MINNEØATS</span></div><div class="tags"><span>Breakfast</span><span>2 min</span></div><h3>The weekday parfait</h3></a>
+      <a class="recipe" href="#ways"><div class="ph"><img src="assets/cinne.webp" alt="Cinneapolis oatmeal bowl with apples, yogurt and granola" loading="lazy"></div><div class="tags"><span>Oatmeal</span><span>10 min</span></div><h3>Cinneapolis</h3></a>
+      <a class="recipe" href="#ways"><div class="ph"><img src="assets/bbo.webp" alt="Babe the Blue Oat bowl with blueberries, banana and honey" loading="lazy"></div><div class="tags"><span>Oatmeal</span><span>10 min</span></div><h3>Babe the Blue Oat</h3></a>
+      <a class="recipe" href="#ways"><div class="ph"><img src="assets/ph-yogurt-dark.webp" alt="Yogurt with blackberries and granola" loading="lazy"><span class="ph-flag">Placeholder · shoot: evening treat bowl</span></div><div class="tags"><span>Snack</span><span>3 min</span></div><h3>Blackberry night cap</h3></a>
+      <a class="recipe" href="#ways"><div class="ph"><img src="assets/tbib.webp" alt="Oatmeal with banana, honey and granola" loading="lazy"></div><div class="tags"><span>Oatmeal</span><span>10 min</span></div><h3>Honey banana bowl</h3></a>
+      <a class="recipe" href="#ways"><div class="ph"><img src="assets/hcd.webp" alt="Chocolate oatmeal bowl with dates and banana" loading="lazy"></div><div class="tags"><span>Oatmeal</span><span>12 min</span></div><h3>Cocoa date bowl</h3></a>
+    </div>
+  </section>
+
+  <section class="bleed" aria-label="Lifestyle">
+    <img data-par="0.12" src="assets/cinneapolis-spread.webp" alt="Cinneapolis oatmeal on a bamboo board with apples, cinnamon and yogurt">
+    <div class="cap rv"><span class="eyebrow" style="color:var(--muted)">Made to share</span><h3>Set the table. Stay a while.</h3><p>Our bowls started as a college apartment cafe for friends. Nine years later, they're still made for gathering.</p></div>
+  </section>
+
+  <div class="marq" aria-hidden="true"><div class="t"><span>Organic oats</span><span>Small batch</span><span>Lightly sweetened with maple</span><span>Handcrafted since 2017</span><span>From bowl to soul</span><span>Organic oats</span><span>Small batch</span><span>Lightly sweetened with maple</span><span>Handcrafted since 2017</span><span>From bowl to soul</span></div></div>
+
+  <section class="story in" id="story">
+    <div class="grid">
+      <div class="ph rv"><img src="assets/founders.webp" alt="Founders Allie and Maria" loading="lazy"><div class="ph2"><img src="assets/a1171.webp" alt="Pouring granola into a bag in the kitchen" loading="lazy"></div></div>
+      <div class="copy rv">
+        <span class="eyebrow" style="color:var(--berry)">Meet Allie &amp; Maria</span>
+        <h2>One college apartment. Lines out the door.</h2>
+        <p>In 2017 we started serving hot bowls of oatmeal to friends from our apartment at the University of Minnesota. The line kept growing, so we took it off campus. Today we bake granola in small batches and bring oatmeal bars to events, with the same goal we had on day one: wholesome food and real community.</p>
+        <div class="stats"><div><b>2017</b><span>first bowl served</span></div><div><b>14</b><span>shops carry us</span></div><div><b>100%</b><span>organic rolled oats</span></div></div>
+        <a class="pill solid" href="#story">Read our story</a>
+        <span class="sig">Your friends in the oatmeal business</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="goods in">
+    <div class="sec-head rv"><h2>Bring it home</h2><p>Goods from the MINNEØATS kitchen. Every one of them makes a good gift.</p></div>
+    <div class="g-grid">
+      <a class="good rv" href="https://minneoats.myshopify.com/cart/36948814725285:1" target="_blank" rel="noopener"><div class="ph"><img src="assets/cut-mug.webp" alt="MINNEØATS diner mug" loading="lazy"></div><b>Diner mug</b><span>$10</span></a>
+      <a class="good rv" href="https://minneoats.myshopify.com/cart/41082658750629:1" target="_blank" rel="noopener"><div class="ph"><img src="assets/cut-candle.webp" alt="Maple Almond candle" loading="lazy"></div><b>Maple Almond candle</b><span>$25</span></a>
+      <a class="good rv" href="https://minneoats.myshopify.com/cart/41729035272357:1" target="_blank" rel="noopener"><div class="ph" style="background:none"><img src="assets/p-tote-life.webp" alt="MINNEØATS canvas tote at a cafe table" loading="lazy" style="max-height:none;width:100%;height:100%;object-fit:cover"></div><b>Canvas tote</b><span>$15</span></a>
+      <a class="good rv" href="https://minneoats.myshopify.com/cart/41200743579813:1" target="_blank" rel="noopener"><div class="ph" style="background:none"><img src="assets/p-crew.webp" alt="MINNEØATS classic crewneck" loading="lazy" style="max-height:none;width:100%;height:100%;object-fit:cover"></div><b>Classic crewneck</b><span>$45</span></a>
+    </div>
+  </section>
+
+  <section class="where" id="where">
+    <div class="in grid">
+      <div class="rv"><span class="eyebrow" style="color:var(--berry)">On shelves near you</span><h2>Find us out there</h2><p style="max-width:40ch">Cafes, markets and gift shops carry our 10 oz and 4 oz bags. Ask for Maple Almond by name.</p><a class="pill solid" href="#where">See all stockists</a></div>
+      <ul class="rv">
+        <li>7 Corners Coffee<span>Minneapolis</span></li><li>Smith + Trade Mercantile<span>Stillwater · Crosby · Red Wing</span></li><li>Rose &amp; Loon<span>Roseville, Rosedale Mall</span></li><li>The Anchor Coffee House<span>White Bear Lake</span></li><li>Westside Wine &amp; Spirits Market<span>St. Louis Park</span></li><li>Luke's Soups<span>Shoreview</span></li><li>Autumnwood Farm<span>Forest Lake</span></li><li>Pepin's Rusty Peddler<span>Pepin, WI</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="news">
+    <div class="in rv">
+      <span class="eyebrow" style="color:var(--berry)">The MINNEØATS Monthly</span>
+      <h2>Hungry for more?</h2>
+      <p>One letter a month: new flavors, pop-up events, recipes and the occasional subscriber-only discount.</p>
+      <form id="newsForm" novalidate><label for="email" class="sr" style="position:absolute;left:-9999px">Email address</label><input id="email" type="email" placeholder="you@email.com" autocomplete="email" required><button class="pill solid" type="submit">Sign me up</button></form>
+      <div class="msg" id="newsMsg" role="status"></div>
+    </div>
+  </section>
+
+  <section class="cater in" id="catering">
+    <div class="card rv">
+      <div class="pics">
+        <div><img src="assets/ph-event-table.webp" alt="Candlelit event table with food and flowers" loading="lazy"><span class="ph-flag">Placeholder · shoot: styled MINNEØATS oatmeal bar at an evening event</span></div>
+        <div><img src="assets/a1320.webp" alt="Tray of MINNEØATS oatmeal cups" loading="lazy"></div>
+        <div><img src="assets/a0971.webp" alt="Topping bar with jams, nut butters and fruit" loading="lazy"></div>
+      </div>
+      <div class="body">
+        <span class="eyebrow" style="color:var(--maple)">Catering &amp; events</span>
+        <h2>An oatmeal bar worth remembering.</h2>
+        <p>For weddings, showers, retreats and the corporate morning that deserves better than bagels. We bring the bowls, the toppings and the people to serve them.</p>
+        <ul><li>Weddings &amp; showers</li><li>Corporate events</li><li>Wellness retreats</li><li>Gift boxes</li></ul>
+        <a class="pill" style="background:var(--blush);color:var(--ink)" href="#catering">Plan an event</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div class="top">
+      <div style="display:grid;gap:14px;align-content:start"><span class="wm logo">MINNEØATS</span><span style="font-weight:600;color:var(--blush)">From bowl to soul. Est. 2017.</span></div>
+      <div><h4>Shop</h4><ul><li><a href="#shop">Granola</a></li><li><a href="#subscribe">Subscribe</a></li><li><a href="#top">Goods</a></li><li><a href="#top">Gift cards</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#story">Our story</a></li><li><a href="#where">Find us</a></li><li><a href="#catering">Catering</a></li><li><a href="#top">Events</a></li></ul></div>
+      <div style="display:grid;gap:18px;align-content:start"><div><h4>Say hi</h4><ul><li>minneoats@gmail.com</li><li>612-552-1015</li></ul></div>
+        <p class="verse">Each of you should use whatever gift you have received to serve others.<cite>1 Peter 4:10</cite></p></div>
+    </div>
+    <div class="base"><span>© 2026 MINNEØATS</span><span>Instagram · Facebook</span></div>
+  </div>
+</footer>
+
+<button class="review" id="reviewBtn" type="button" aria-pressed="true">Shot list: on</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+document.documentElement.classList.add('js');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Spoon Ø
+
+
+// header hide on scroll down
+const hdr=document.getElementById('hdr');let lastY=scrollY;
+addEventListener('scroll',()=>{const y=scrollY;hdr.classList.toggle('hide',y>lastY&&y>300);lastY=y},{passive:true});
+
+// reveal (visible at rest if anything fails)
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('.rv').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight)el.classList.add('on')}),60);
+
+// statement: words fill as you scroll
+const st=document.getElementById('stmt');
+st.innerHTML=st.textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+const ws=[...st.querySelectorAll('.w')];
+function fill(){const r=st.getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));const n=Math.round(p*ws.length);ws.forEach((w,i)=>w.classList.toggle('on',i<n))}
+addEventListener('scroll',fill,{passive:true});fill();
+
+// parallax
+const par=[...document.querySelectorAll('[data-par]')];
+function px(){if(reduce)return;par.forEach(el=>{const r=el.parentElement.getBoundingClientRect();const c=r.top+r.height/2-innerHeight/2;const base=el.classList.contains('spill')?' rotate(-8deg)':'';el.style.transform=`translateY(${c*parseFloat(el.dataset.par)}px)${base}`})}
+addEventListener('scroll',px,{passive:true});px();
+
+// carousel
+const tr=document.getElementById('ctrack'),slides=[...tr.children],cnt=document.getElementById('count');
+const go=d=>{const w=slides[0].getBoundingClientRect().width+20;tr.scrollBy({left:d*w,behavior:'smooth'})};
+document.getElementById('prev').onclick=()=>go(-1);document.getElementById('next').onclick=()=>go(1);
+tr.addEventListener('scroll',()=>{const w=slides[0].getBoundingClientRect().width+20;cnt.textContent=`${Math.min(slides.length,Math.round(tr.scrollLeft/w)+1)} / ${slides.length}`},{passive:true});
+
+// bulk size
+document.querySelectorAll('.sz button').forEach(b=>b.onclick=()=>{b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('bulkPrice').textContent='$'+b.dataset.p;document.getElementById('bulkBtn').href='https://minneoats.myshopify.com/cart/'+b.dataset.v+':1'});
+
+// subscription builder
+const sub={bags:2,freq:4};
+function calc(){const was=sub.bags*12,now=was*.9;document.getElementById('subTotal').textContent='$'+now.toFixed(2);document.getElementById('subWas').textContent='$'+was.toFixed(2);document.getElementById('subFreq').textContent=`per delivery, every ${sub.freq} weeks`}
+document.querySelectorAll('.chips').forEach(g=>g.querySelectorAll('button').forEach(b=>b.onclick=()=>{g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));sub[g.dataset.k]=+b.dataset.v;calc()}));
+calc();
+const toast=document.getElementById('toast');let tt;
+function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),3800)}
+document.getElementById('subBtn').onclick=()=>say(`Mockup: this would start a ${sub.bags}-bag subscription every ${sub.freq} weeks through Shopify Subscriptions.`);
+
+// newsletter
+document.getElementById('newsForm').addEventListener('submit',e=>{e.preventDefault();const v=document.getElementById('email').value.trim();const m=document.getElementById('newsMsg');m.textContent=/^\S+@\S+\.\S+$/.test(v)?'Mockup: you’d be on the list. Real signup connects to their email tool.':'Enter an email address like name@example.com.'});
+
+// shot-list toggle
+const rb=document.getElementById('reviewBtn');
+rb.onclick=()=>{const on=document.body.classList.toggle('clean');rb.textContent='Shot list: '+(on?'off':'on');rb.setAttribute('aria-pressed',!on)};
+</script>
+</body>
+</html>
