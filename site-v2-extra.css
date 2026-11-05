@@ -2,6 +2,7 @@
 .hdr .w.hgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:20px}.nl{justify-content:flex-start}.nr{display:flex;justify-content:flex-end;align-items:center;gap:clamp(12px,1.7vw,26px)}
 @media(max-width:1060px){.hdr .w.hgrid{display:flex;justify-content:space-between}.nl{display:none}}
 .logo{text-align:center}
+.hart img.ph{padding:0;background:none;text-align:left}
 @media(max-width:700px){.cmp{display:block;overflow-x:auto}}
 .arches.one{display:block;max-width:340px;margin:38px auto 0;padding-bottom:clamp(40px,6vw,70px)}.arches.one .a2{aspect-ratio:3/4}.arches.one .bag{width:44%;right:-14%}
 .tryrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,260px);gap:18px;overflow-x:auto;padding:4px 4px 16px;scroll-snap-type:x proximity}.trycard{margin:0;background:var(--paper);border-radius:22px;overflow:hidden;border:1px solid var(--line);scroll-snap-align:start}.trycard img{width:100%;aspect-ratio:1;object-fit:cover}.trycard figcaption{padding:14px 18px 18px;display:grid;gap:4px}.trycard b{font:600 1.4rem var(--serif)}.trycard span{font-size:14.5px;color:var(--ink2)}
